@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./views/styles/index.css">
+
+</head>
+<body>
+    <div id="game"></div>
+</body>
+<!-- // login -->
+<template id="LoginScreen">
+    <link rel="stylesheet" type="text/css" href="./views/styles/index.css">
+    <link rel="stylesheet" type="text/css" href="./views/styles/layout.css">
+    <div class="bg-img">
+
+        <div class="w-30 bg-white mt-xlg mg-auto">
+            
+            <div class="text-head-lg align-center mt-lg mb-md pt-lg">Đăng nhập</div>
+            <form action="" id="formLogin" class="margin-l-r">
+                <form-input name="email"  type="text" label ="Email" placeholder="Nhập email của bạn"></form-input></form-input>
+                <form-input name="password" type="password" label ="Mật khẩu" placeholder="Nhập mật khẩu của bạn"></form-input>
+                <div class="d-flex justify-center">
+                    <button type="submit" id="LogInBtn" class="btn-primary login-btn btn mt-lg pointer">Đăng nhập</button>
+                </div>
+                <div class="d-flex justify-space-between align-center mt-md mb-md pb-md">
+                    <span class="link text-body-md" id="LinkToRegister">Đăng ký ngay</span>
+                    <span class="link text-body-md" id="ForgotPassword">Quên mật khẩu</span>
+                </div>
+            </form>
+        </div>
+    </div>
+</template>
+
+<!-- // register -->
+<template id="RegisterScreen">
+    <link rel="stylesheet" type="text/css" href="./views/styles/index.css">
+    <div class="w-30 bg-white mt-xlg mg-auto">
+
+        <div class="text-head-lg align-center mt-lg mb-md pt-lg">Đăng ký</div>
+        <form action="" id="formRegister" class="margin-l-r">
+            
+            <form-input type="text" label ="Email" name="email" placeholder="Nhập email của bạn"></form-input>
+            <form-input type="text" label ="Tên hiển thị" name="displayName" placeholder="Nhập tên hiển thị của bạn"></form-input>
+            <form-input type="password" label ="Mật khẩu" name="password" placeholder="Nhập mật khẩu của bạn"></form-input>
+            <form-input type="password" label ="Nhập lại mật khẩu" name="confirmPassword" placeholder="Nhập lại mật khẩu"></form-input>
+            <div class="d-flex justify-center mb-md">
+                <button type="submit" class="btn-primary login-btn btn mt-lg pointer">Đăng ký</button>
+            </form>
+        </div>
+    </div>
+    <div class="align-center mb-md pb-md">
+        Đã có tài khoản?
+        <span class="link" id="LinkToLogin">Đăng nhập ngay</span>
+    </div>
+    </template>
+
+<!-- // lobby -->
+<template id="LobbyScreen">
+    <link rel="stylesheet" type="text/css" href="./views/styles/index.css">
+
+    <div class="lobby-room mt-lg mg-auto bd-rounded p-md overflow-auto" >
+        <div class="fixed">
+
+            <div><span id="LogOut" class="float-r logOutBtn">Đăng xuất</span></div>
+            
+            <div>
+                <button id="createRoom" class="btn-primary btn  pointer">Tạo phòng</button>
+            </div>
+        </div>
+        <div id="myModal" class="modal">
+            <div id="placeHold" class="modal-content">
+                
+            </div>
+        </div>
+        <div id="listRoom" class="mt-md"></div>
+        
+    </div>
+    
+
+</template>
+
+
+<!-- room -->
+<template id="roomScreen">
+    <link rel="stylesheet" type="text/css" href="./views/styles/index.css">
+
+    <div class="lobby-room mt-lg mg-auto p-md">
+
+        <span id="backLobby" class="logOutBtn">Quay lại</span>
+        <div id="nameRoom"> Room: </div>
+        <!-- <div >Người chơi trong phòng:
+            <div id="roomPlayers" class="d-flex flex-column"></div>
+        </div> -->
+    <button id="playGame" class="btn-primary btn  pointer centerBtn">Bắt đầu chơi</button>
+    <chat-screen></chat-screen>
+</div>
+</template>
+<!-- // form-input -->
+<template id="FormInput">
+    <link rel="stylesheet" type="text/css" href="./views/styles/index.css">
+    <div id="container" class="input-container line-break">
+        <input id="input" class="input"/>
+        <label id="label"></label> 
+    </div>
+    <div id="errorMsg"></div>
+</template>
+
+<!-- chat-box -->
+<template id="chatScreen">
+    <link rel="stylesheet" href="./views/styles/index.css">
+    <div class="d-flex flex-column h-100">
+        <div id="placeholder"></div>
+        <!-- <div class="d-flex">
+            <button class="btn btn-primary" id="btnShowCon">Conversation</button>
+            <h2 class="flex-1" id="txtTitle">Select a conversation</h2>
+            <button class="btn btn-primary" id="btnShowMem">Member</button>
+        </div> -->
+        <div class="messageList d-flex flex-column-reverse mt-lg" id="messageList" ==>
+        </div>
+        <div>
+            <form id="chatForm">
+                <form-input type="text" name="message" placeholder="Hãy chat gì đó" id="textInput"></form-input>
+            </form>
+        </div>
+    </div>
+</template>
+<!-- message -->
+<template id="message">
+    <link rel="stylesheet" href="./views/styles/index.css">
+
+    <div id="container" class="d-flex">
+        <div id="messageContainer" class="">
+            <p id="content" class="textMsg"></p>
+            <small id="displayName"></small>
+        </div>
+    </div>
+</template>
+
+
+
+
+<!-- form-gameplay:start -->
+<template id="form-gameplay">
+    <link rel="stylesheet" href="./views/styles/index.css">
+    <div id="gameplay" class="d-flex flex-column mg-auto ">
+        <div class="d-flex justify-space-between flex-1 mt-md margin-l-r">
+            <div id="room" class="mg-auto">Phòng: </div>
+            <div id="time"></div>
+            <button type="button" class="btn btn-secondary" id="returnToRoom">Thoát</button>
+        </div>
+        <div class="d-flex flex-row flex-3 justify-center">
+            <div id="rotation" class="flex-3">
+                <img id="imgItem" class="wheel" src="https://kenh14cdn.com/thumb_w/650/2016/photo-1-1482579738121.png" alt="">
+                <span id="val-rotate"></span>
+                <button id="start" class="pointer d-block mg-auto spin">Start</button>
+            </div>
+        </div>
+                            <div id="players" class="d-flex justify-space-between mt-20pc">
+                                <div id="player1" class="bg-white player mb-md"></div>
+                                <div id="player2" class="bg-white player mb-md"></div>
+                                <div id="player3" class="bg-white player mb-md"></div>
+                            </div>
+        <div class="d-flex flex-column flex-1 mg-auto">
+            <text-form id="texts" name="" class="align-center"></text-form>
+            <div id="show" class="d-flex flex-row"></div>
+            <div class="d-flex flex-row mg-auto">
+                <form-input label="Nhập đáp án" type="text" placeholder="Nhập đáp án" id="input" class="flex-3"></form-input>
+                <button type="submit" id="enter" class="btn btn-primary pointer">Enter</button>
+            </div>
+            <!-- <chat-screen></chat-screen> -->
+        </div>
+    </div>
+</template>
+<!-- form-gameplay:end -->
+
+<!-- form-player:start -->
+<template id="player">
+    <link rel="stylesheet" href="./views/styles/index.css">
+    <div class="d-flex flex-column justify-space-between">
+        <div id="name" class="text-body-lg flex-1 pb-md"></div>
+        <div id="point" class="text-body-md flex-1"></div>
+    </div>
+</template>
+<!-- form-player:end -->
+
+<!-- text-form:start -->
+<template id="text-form">
+    <link rel="stylesheet" href="./views/styles/index.css">
+    <div id="text" class="text-head-lg"></div>
+</template>
+<!-- text-form:emd -->
+
+
+<!-- conversation-list: start -->
+<template id="conversationList">
+    <link rel="stylesheet" href="./views/styles/index.css">
+    <div class="bg-white overflow-auto js-stopClick">
+        <button class="btn btn-primary" id="btnCreateCon">Create Conversation</button>
+        <div id="conList"></div>
+    </div>
+</template>
+<!-- conversation-list: end -->
+
+<!-- conversation-form: start -->
+<template id="conversationForm">
+    <link rel="stylesheet" href="./views/styles/index.css">
+    <div class="bg-white js-stopClick">
+        <form id="form">
+            <form-input label="Name" type="text" name="name" placeholder="Tên phòng"></form-input>
+            <form-input label="Password" type="text" name="member" placeholder="Mật khẩu phòng"></form-input>
+            <div class="d-flex justify-space-between aline-center">
+                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="button" id="backBtn" class="btn btn-secondary">Back</button>
+            </div>
+        </form>
+    </div>
+</template>
+<!-- conversation-form: end-->
+
+<!-- conversation-item: start -->
+<template id="conversationItem">
+    <link rel="stylesheet" href="./views/styles/index.css">
+    <div id="container" class="d-flex justify-space-between p-md hover">
+        <h3 id="name">Phòng của </h3>
+        <span id="no-of-mems" class="total-mem"></span>
+    </div>
+</template>
+
+<!-- conversation-item: end -->
+
+
+<!-- Rotatiton: start -->
+<template id="rotate">
+    <link rel="stylesheet" href="./views/styles/index.css">
+    <div class="pos-rela">
+
+        <img id="imgItem" class="wheel">
+        <button id="start" class="pointer d-block mg-auto spin">Quay</button>
+        <span id="val-rotate"></span>
+    </div>
+
+</template>
+<!-- Rotatiton: end -->
+
+
+
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+<script>
+
+var firebaseConfig = {
+    apiKey: "AIzaSyBeBIQS0jKyvqxTDFRdgkiQQ0eusN7iEM4",
+    authDomain: "project-wof.firebaseapp.com",
+    databaseURL: "https://project-wof.firebaseio.com",
+    projectId: "project-wof",
+    storageBucket: "project-wof.appspot.com",
+    messagingSenderId: "6590843970",
+    appId: "1:6590843970:web:3488434502a807cb6a71db"
+    };
+  
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+
+</script>
+<script src="./index.js" type="module"></script>
+</html>

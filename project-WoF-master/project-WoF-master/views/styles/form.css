@@ -1,0 +1,57 @@
+.input {
+  padding: 10px;
+  border: 0;
+  border-bottom: 1px solid #acacac;
+  font-size: 14px;
+}
+.input:focus {
+  border-bottom: 2px solid darkcyan;
+  outline: none;
+}
+.input + label {
+  color: rgb(92, 90, 90);
+}
+.input:focus ~ label {
+  color: teal;
+}
+.input-container {
+  margin: 0 0 10px 0;
+}
+.input-container.line-break {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.input-container.line-break > label {
+  margin-bottom: 5px;
+}
+.btn {
+  padding: 10px 15px;
+  border-radius: 50px;
+  border: 1px;
+  outline: none;
+}
+.btn-primary {
+  background: rgb(158, 152, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(158, 152, 255, 1) 0%,
+    rgba(189, 106, 252, 1) 46%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  color: #f1eef4
+}
+.link {
+  color: darkcyan;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.link:hover {
+  color: cyan;
+}
+.error {
+  color: red;
+  border-color: red;
+}
+.borderred{
+  border:2px solid red;
+}
