@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="./sytles/index.css">
+</head>
+
+<body>
+    <con-list></con-list>
+</body>
+
+<!-- conversation-list: start -->
+<template id="List">
+    <link rel="stylesheet" href="./sytles/index.css">
+    <div id="CreateBook"></div>
+    <div class="h-100 w-75 bg-white overflow-auto js-stopClick">
+        <button class="btn btn-primary" id="btnCreateCon">Thêm Sách</button>
+        <div class="d-flex justify-space-between p-md hover">
+            <h3 class="flex-2 text-center">Tên Sách</h3>
+            <h3 class="flex-1 text-center">Tác giả</h3>
+            <h3 class="flex-1 text-center">Tình trạng đọc</h3>
+        </div>
+        <div id="conList"></div>
+    </div>
+</template>
+<!-- conversation-list: end -->
+
+<!-- conversation-form: start -->
+<template id="conversationForm">
+    <link rel="stylesheet" href="./sytles/index.css">
+    <div class="h-100 w-75 bg-white js-stopClick">
+        <form id="form">
+            <form-input label="book" type="text" name="book"></form-input>
+            <form-input label="tacgia" type="text" name="tacgia"></form-input>
+            <div class="d-flex justify-space-between aline-center">
+                <button type="submit" class="btn btn-primary">Thêm</button>
+            </div>
+        </form>
+    </div>
+</template>
+<!-- conversation-form: end-->
+
+<!-- conversation-item: start -->
+<template id="conversationItem">
+    <link rel="stylesheet" href="./sytles/index.css">
+    <div id="container" class="d-flex justify-space-between p-md hover">
+        <h3 id="name" class="flex-2 no-margin"></h3>
+        <h3 id="no-of-mems" class="flex-1 text-center no-margin"></h3>
+        <h3 id="archive" class="flex-1 text-center no-margin"></h3>
+    </div>
+</template>
+<!-- from-input: start -->
+<template id="formInput">
+    <link type="text/css" rel="stylesheet" href="./sytles/index.css">
+    <div id="container" class="input-container line-break">
+        <input id="input" class="input" />
+        <label id="label"></label>
+    </div>
+    <div id="errorMsg"></div>
+</template>
+<!-- from-input: end -->
+
+<!-- conversation-item: end -->
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
+
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyBjR9IZMmbq_xIoFGamZSegk8aZGNp1ihA",
+        authDomain: "ci-js46-chat.firebaseapp.com",
+        databaseURL: "https://ci-js46-chat.firebaseio.com",
+        projectId: "ci-js46-chat",
+        storageBucket: "ci-js46-chat.appspot.com",
+        messagingSenderId: "407611250186",
+        appId: "1:407611250186:web:c2af0ad26258d8374031f3",
+        measurementId: "G-RXHP6GV56Y"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    firebase.analytics();
+</script>
+
+<script type="module" src="./index.js"></script>
+
+</html>
